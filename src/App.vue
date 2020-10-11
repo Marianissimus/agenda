@@ -1,17 +1,32 @@
 <template>
-  <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <div id="app" class="container">
+    <transition name="fade" mode="out-in">
+      <router-view/>
+    </transition>
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import { mutations } from '@/store'
+import { parsedContacts } from '@/data/parsedContacts.js'
 
 export default {
   name: 'App',
-  components: {
-    HelloWorld
+  created () {
+    // to load & save contacts in localStorage
+    let savedContacts = JSON.parse(localStorage.getItem('contacts'))
+    if (savedContacts) {
+      mutations.setContacts(savedContacts)
+    } else {
+      localStorage.setItem('contacts', JSON.stringify(parsedContacts))
+      mutations.setContacts(parsedContacts)
+    }
+  },
+  watch: {
+    // first time to use watch in over a year :)
+    StoreContacts(newValue) {
+      localStorage.setItem('contacts', JSON.stringify(newValue))
+    }
   }
 }
 </script>
