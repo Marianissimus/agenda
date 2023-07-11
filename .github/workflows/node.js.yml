@@ -1,8 +1,8 @@
 name: Build and Deploy Vue Application to Github Pages
-on: 
+on:
     push:
         branch:
-            -main/master/{{name of the branch you want to trigger you action on}}
+            master
 jobs:
   build_deploy_vue:
     runs-on: ubuntu-latest
@@ -10,7 +10,13 @@ jobs:
     steps:
     - uses: actions/checkout@v2
     - id: Build-Deploy-Vue
-      uses: xRealNeon/VuePagesAction@1.0.0
+    - uses: actions/setup-node@v1
+      with:
+        node-version: 16
+    - run: npm ci
+    - run: npm test
+    - run: npm run build
+    - uses: xRealNeon/VuePagesAction@1.0.0
       with:
         username: marianissimus
         reponame: agenda
