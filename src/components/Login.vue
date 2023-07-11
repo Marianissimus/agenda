@@ -45,6 +45,7 @@
         >
         Login
       </b-button>
+      <div><br />*Any user + pass will work</div>
 
     </b-form>
   </b-card>
