@@ -1,1 +1,3 @@
-publicPath: 'agenda'
+module.exports = {
+  publicPath: '/agenda/'
+}
