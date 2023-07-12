@@ -29,6 +29,5 @@ jobs:
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: docs
-          username: 'marianissimus'
-          reponame: 'agenda'
-          token: ${{ secrets.GITHUB_TOKEN }} # Leave this line unchanged
+          publish_branch: 'gh-pages'
+          user_name: 'marianissimus'
